@@ -12,7 +12,7 @@ import { UsersModule } from './users/module/module.module';
 import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [ConfigModule.forRoot(),MongooseModule.forRoot("mongodb://localhost:27017/chat_app"), ChatsModule,UsersModule,],
+  imports: [ConfigModule.forRoot(),MongooseModule.forRoot("mongodb://localhost:27017/chat_app"), ChatsModule,UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })

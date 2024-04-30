@@ -9,8 +9,8 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: CreateUserDto): Promise<User> {
-    return this.userService.create(createUserDto);
+  create(@Body() name: User): Promise<User> {
+    return this.userService.create(name);
   }
 
   @Get()

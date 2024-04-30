@@ -32,11 +32,19 @@ export class ChatsService {
     return await this.chatModel.findById(chatId).populate('messages');
   }
 
-  async createMessage(chatId: string, createMessageDto: CreateMessageDto): Promise<Message> {
+  /* async createMessage(chatId: string, createMessageDto: CreateMessageDto): Promise<Message> {
     const { text, sender } = createMessageDto;
     const message = new this.messageModel({ text, sender, chat: chatId });
     return await message.save();
-  }
+  } */
+  async createMessage(chatId: string, messageDto: CreateMessageDto): Promise<Message> {
+    const message = new this.messageModel({
+        ...messageDto,
+        chat: chatId, // Ensure that chatId is correctly assigned
+    });
+    return await message.save();
+}
+  
   async getOrCreateChat(firstUserId: string, secondUserId: string): Promise<any> {let chat = await this.chatModel.findOne({
     $or: [
       { firstUser: firstUserId, secondUser: secondUserId },
